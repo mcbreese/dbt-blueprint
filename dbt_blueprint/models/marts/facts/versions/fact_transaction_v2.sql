@@ -1,3 +1,4 @@
+-- New version created when breaking change is introduced to the model
 select 
   transaction_uid
   , event_domain
@@ -14,4 +15,4 @@ select
   , message
   , event_time
   , recorded_time
-from {{ ref('fact_transaction_v2') }}
+from {{ ref('int_transactions') }}
