@@ -4,19 +4,9 @@ connection_databricks:
     # dev local profile used for dbt development on local mashie with token access
     dev_local:
       type: databricks
-      catalog: dbt_blueprint
-      schema: default
-      host: dbc-a505ff10-0af5.cloud.databricks.com
-      http_path: /sql/1.0/warehouses/4fa4ca06332da87f
-      token: "{{ env_var('BLUEPRINT_DATABRICKS_TOKEN') }}"
+      host: "{{ env_var('DATABRICKS_HOST') }}"
+      http_path: "{{ env_var('DATABRICKS_HTTP_PATH') }}"
+      token: "{{ env_var('DATABRICKS_TOKEN') }}"
+      catalog: "{{ env_var('DBT_CATALOG', 'learning_catalog') }}"
+      schema: "{{ env_var('DBT_SCHEMA', 'dbt_blueprint_dev') }}"
       threads: 1
-
-    dev_cloud:
-      type: databricks
-      auth_type: oauth
-      catalog: dbt_blueprint_prod
-      schema: default
-      host: dbc-a505ff10-0af5.cloud.databricks.com
-      http_path: /sql/1.0/warehouses/4fa4ca06332da87f
-      token: "{{ env_var('BLUEPRINT_DATABRICKS_TOKEN') }}"
-      threads: 4
